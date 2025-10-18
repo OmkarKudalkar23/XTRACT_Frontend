@@ -1,0 +1,433 @@
+/* Door Container - Full viewport */
+.door-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+/* Background Image */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+/* Doors Wrapper - Contains all 4 doors */
+.doors-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3vw;
+  z-index: 2;
+  width: 90%;
+  max-width: 1400px;
+  height: 100%;
+  padding-bottom: 0;
+}
+
+/* Individual Door Item */
+.door-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  max-width: 280px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.door-item.locked {
+  cursor: not-allowed;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Door Images */
+.door-image {
+  width: 100%;
+  height: 72%;
+  max-height: 80vh; 
+  margin-bottom: 18vh;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0.85);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.door-item:hover .door-image {
+  transform: scale(1.05);
+  filter: brightness(1);
+  cursor: pointer;
+}
+
+/* Hanger Images - Positioned on top of doors */
+.hanger-image {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: auto;
+  max-width: 150px;
+  object-fit: contain;
+  z-index: 3;
+  transition: transform 0.3s ease;
+}
+
+.door-item:hover .hanger-image {
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* Lock Image - Positioned on bottom-right of door */
+.lock-image {
+  position: absolute;
+  bottom: 42vh;
+  right: 9%;
+  width: clamp(30px, 4vw, 60px);
+  height: auto;
+  z-index: 4;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
+  animation: lockAppear 0.3s ease-out;
+}
+
+@keyframes lockAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Clock - Top Right Corner */
+.clock {
+  position: fixed;
+  top: 1vh;
+  right: 1vw;
+  width: clamp(60px, 8vw, 120px);
+  height: auto;
+  z-index: 10;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  animation: clockTick 2s ease-in-out infinite;
+}
+
+@keyframes clockTick {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* Shadow below Door 1 */
+.shadow-door1 {
+  position: absolute;
+  bottom: 0;
+  left: 6%;
+  width: clamp(120px, 18vw, 300px);
+  height: auto;
+  z-index: 1;
+  opacity: 0.8;
+  filter: blur(2px);
+}
+
+/* Cross Chain - In front of Door 2 */
+.cross-chain {
+  position: absolute;
+  bottom: -2vh;
+  left: 32%;
+  transform: translateX(-50%);
+  width: clamp(100px, 14vw, 220px);
+  height: auto;
+  z-index: 3;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+  animation: swingChain 3s ease-in-out infinite;
+}
+
+@keyframes swingChain {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  50% { transform: translateX(-50%) rotate(3deg); }
+}
+
+/* Blood Mark - Bottom Right */
+.blood-mark {
+  position: fixed;
+  bottom: 2vh;
+  right: 3vw;
+  width: clamp(100px, 12vw, 200px);
+  height: auto;
+  z-index: 10;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 5px rgba(139, 0, 0, 0.5));
+}
+
+/* Responsive Design - Tablets Landscape */
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .doors-wrapper {
+    gap: 2vw;
+    height: 100%;
+  }
+
+  .door-image {
+    max-height: 70vh;
+  }
+
+  .hanger-image {
+    top: 12%;
+    width: 55%;
+  }
+
+  .lock-image {
+    bottom: 18vh;
+    right: 8%;
+    width: clamp(25px, 3.5vw, 50px);
+  }
+
+  .shadow-door1 {
+    left: 5%;
+    bottom: 0;
+  }
+
+  .cross-chain {
+    left: 31%;
+    bottom: 12vh;
+  }
+}
+
+/* Responsive Design - Tablets Portrait (iPad Air, etc.) */
+@media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+  .doors-wrapper {
+    gap: 2.5vw;
+    height: 100%;
+    padding-bottom: 0;
+  }
+
+  .door-item {
+    max-width: 240px;
+  }
+
+  .door-image {
+    max-height: 65vh;
+    margin-bottom: 18vh;
+  }
+
+  .hanger-image {
+    top: 35%;
+    width: 55%;
+    max-width: 140px;
+  }
+
+  .lock-image {
+    bottom: 45vh;
+    right: 10%;
+    width: clamp(30px, 4vw, 55px);
+  }
+
+  .shadow-door1 {
+    left: 5%;
+    bottom: 0;
+  }
+
+  .cross-chain {
+    left: 32%;
+    bottom: 14vh;
+  }
+}
+
+/* Responsive Design - Mobile Landscape */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .doors-wrapper {
+    gap: 1.5vw;
+    height: 100%;
+    padding-bottom: 0;
+  }
+
+  .door-image {
+    max-height: 85vh;
+  }
+
+  .hanger-image {
+    top: 12%;
+    width: 50%;
+  }
+
+  .lock-image {
+    bottom: 40vh;
+    right: 8%;
+    width: clamp(25px, 3.5vw, 50px);
+  }
+
+  .clock {
+    top: 1vh;
+    right: 1vw;
+  }
+
+  .shadow-door1 {
+    bottom: 0;
+  }
+
+  .cross-chain {
+    bottom: 10vh;
+  }
+}
+
+/* Responsive Design - Mobile Portrait */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .doors-wrapper {
+    flex-wrap: wrap;
+    gap: 3vw;
+    height: auto;
+    padding: 2vh 2vh 8vh 2vh;
+    bottom: auto;
+    top: 10vh;
+    width: 95%;
+  }
+
+  .door-item {
+    flex: 0 0 45%;
+    max-width: 180px;
+    height: auto;
+    min-height: 45vh;
+    margin-bottom: 3vh;
+  }
+
+  .door-image {
+    max-height: 40vh;
+    margin-bottom: 0;
+  }
+
+  .hanger-image {
+    top: 5vh;
+    width: 60%;
+    max-width: 100px;
+  }
+
+  .lock-image {
+    bottom: 15vh;
+    right: 12%;
+    width: clamp(20px, 6vw, 45px);
+  }
+
+  .clock {
+    top: 1vh;
+    right: 1vw;
+    width: clamp(50px, 12vw, 80px);
+  }
+
+  .shadow-door1 {
+    left: 3%;
+    bottom: 48%;
+    width: clamp(80px, 20vw, 140px);
+  }
+
+  .cross-chain {
+    left: 60%;
+    bottom: 40%;
+    width: clamp(60px, 18vw, 120px);
+  }
+
+  .blood-mark {
+    bottom: 2vh;
+    right: 3vw;
+    width: clamp(60px, 18vw, 120px);
+  }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+  .doors-wrapper {
+    gap: 4vw;
+    padding: 1.5vh 1.5vh 8vh 1.5vh;
+  }
+
+  .door-item {
+    flex: 0 0 45%;
+    max-width: 150px;
+    min-height: 40vh;
+    margin-bottom: 3vh;
+  }
+
+  .door-image {
+    max-height: 35vh;
+    margin-bottom: 0;
+  }
+
+  .hanger-image {
+    top: 4vh;
+    width: 65%;
+    max-width: 90px;
+  }
+
+  .lock-image {
+    bottom: 12vh;
+    right: 10%;
+    width: clamp(18px, 8vw, 40px);
+  }
+
+  .clock {
+    width: clamp(40px, 15vw, 70px);
+  }
+}
+
+/* Extra Small Devices */
+@media screen and (max-width: 360px) {
+  .door-item {
+    flex: 0 0 48%;
+    max-width: 120px;
+    min-height: 35vh;
+  }
+
+  .door-image {
+    max-height: 30vh;
+  }
+
+  .hanger-image {
+    top: 3.5vh;
+    width: 70%;
+  }
+
+  .lock-image {
+    bottom: 10vh;
+    right: 10%;
+    width: clamp(15px, 10vw, 35px);
+  }
+}
+
+/* Large Screens */
+@media screen and (min-width: 1920px) {
+  .doors-wrapper {
+    max-width: 1600px;
+    gap: 4vw;
+  }
+
+  .door-image {
+    max-height: 85vh;
+  }
+
+  .hanger-image {
+    max-width: 180px;
+    top: 12%;
+  }
+
+  .shadow-door1 {
+    width: clamp(150px, 20vw, 350px);
+  }
+
+  .cross-chain {
+    width: clamp(120px, 16vw, 260px);
+  }
+}
