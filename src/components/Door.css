@@ -214,6 +214,7 @@
     gap: 2.5vw;
     height: 100%;
     padding-bottom: 0;
+    bottom: 0;
   }
 
   .door-item {
@@ -222,17 +223,17 @@
 
   .door-image {
     max-height: 65vh;
-    margin-bottom: 18vh;
+    margin-bottom: 5vh;
   }
 
   .hanger-image {
-    top: 35%;
+    top: 45%;
     width: 55%;
     max-width: 140px;
   }
 
   .lock-image {
-    bottom: 45vh;
+    bottom: 30vh;
     right: 10%;
     width: clamp(30px, 4vw, 55px);
   }
@@ -285,39 +286,62 @@
   }
 }
 
+/* iPad Mini and similar tablets (768px portrait) */
+@media screen and (max-width: 768px) and (min-width: 768px) and (orientation: portrait) and (min-height: 1000px) {
+  .doors-wrapper {
+    flex-wrap: wrap;
+    gap: 3vw;
+    height: auto;
+    padding: 2vh 2vh 15vh 2vh;
+    bottom: 5vh;
+    top: auto;
+    width: 95%;
+    align-items: flex-end;
+  }
+
+  .hanger-image {
+    top: 12vh;
+  }
+
+  .lock-image {
+    bottom: 18vh;
+  }
+}
+
 /* Responsive Design - Mobile Portrait */
 @media screen and (max-width: 768px) and (orientation: portrait) {
   .doors-wrapper {
     flex-wrap: wrap;
     gap: 3vw;
     height: auto;
-    padding: 2vh 2vh 8vh 2vh;
-    bottom: auto;
-    top: 10vh;
+    padding: 2vh 2vh 15vh 2vh;
+    bottom: 10vh;
+    top: auto;
     width: 95%;
+    align-items: flex-end;
   }
 
   .door-item {
     flex: 0 0 45%;
-    max-width: 180px;
+    max-width: 200px;
     height: auto;
-    min-height: 45vh;
-    margin-bottom: 3vh;
+    min-height: 52vh;
+    margin-bottom: 0;
   }
 
   .door-image {
-    max-height: 40vh;
+    max-height: 52vh;
     margin-bottom: 0;
   }
 
   .hanger-image {
-    top: 5vh;
+    top: 8vh;
     width: 60%;
-    max-width: 100px;
+    max-width: 110px;
   }
 
   .lock-image {
-    bottom: 15vh;
+    bottom: 16vh;
     right: 12%;
     width: clamp(20px, 6vw, 45px);
   }
@@ -330,13 +354,13 @@
 
   .shadow-door1 {
     left: 3%;
-    bottom: 48%;
+    bottom: 10vh;
     width: clamp(80px, 20vw, 140px);
   }
 
   .cross-chain {
     left: 60%;
-    bottom: 40%;
+    bottom: 10vh;
     width: clamp(60px, 18vw, 120px);
   }
 
@@ -351,29 +375,30 @@
 @media screen and (max-width: 480px) {
   .doors-wrapper {
     gap: 4vw;
-    padding: 1.5vh 1.5vh 8vh 1.5vh;
+    padding: 1.5vh 1.5vh 10vh 1.5vh;
+    bottom: 10vh;
   }
 
   .door-item {
     flex: 0 0 45%;
-    max-width: 150px;
-    min-height: 40vh;
-    margin-bottom: 3vh;
+    max-width: 165px;
+    min-height: 48vh;
+    margin-bottom: 0;
   }
 
   .door-image {
-    max-height: 35vh;
+    max-height: 48vh;
     margin-bottom: 0;
   }
 
   .hanger-image {
-    top: 4vh;
+    top: 11vh;
     width: 65%;
     max-width: 90px;
   }
 
   .lock-image {
-    bottom: 12vh;
+    bottom: 17vh;
     right: 10%;
     width: clamp(18px, 8vw, 40px);
   }
@@ -388,20 +413,20 @@
   .door-item {
     flex: 0 0 48%;
     max-width: 120px;
-    min-height: 35vh;
+    min-height: 40vh;
   }
 
   .door-image {
-    max-height: 30vh;
+    max-height: 40vh;
   }
 
   .hanger-image {
-    top: 3.5vh;
+    top: 10vh;
     width: 70%;
   }
 
   .lock-image {
-    bottom: 10vh;
+    bottom: 15vh;
     right: 10%;
     width: clamp(15px, 10vw, 35px);
   }
@@ -429,5 +454,106 @@
 
   .cross-chain {
     width: clamp(120px, 16vw, 260px);
+  }
+}
+
+/* Mobile Title - Only visible on mobile devices */
+.mobile-title {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-title {
+    display: block;
+    position: fixed;
+    top: 18vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    color: #ff0000;
+    font-size: clamp(20px, 6.5vw, 32px);
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8),
+                 0 0 20px rgba(0, 0, 0, 0.9);
+    font-family: 'Arial Black', sans-serif;
+    margin: 0;
+    padding: 0 10px;
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+/* Mobile Pagination Controls */
+.mobile-pagination {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-pagination {
+    display: flex;
+    position: fixed;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    border-radius: 25px;
+    backdrop-filter: blur(5px);
+  }
+
+  .pagination-btn {
+    background: rgba(139, 0, 0, 0.8);
+    border: 2px solid #ff0000;
+    color: #fff;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+
+  .pagination-btn:hover:not(:disabled) {
+    background: rgba(255, 0, 0, 0.9);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+  }
+
+  .pagination-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: #666;
+    background: rgba(80, 80, 80, 0.5);
+    box-shadow: none;
+  }
+
+  .pagination-dots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background: #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    transform: scale(1.3);
   }
 }

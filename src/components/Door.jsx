@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Door.css';
+// import axios from 'axios'; // Will be used for actual API calls
 
 const Door = () => {
-  const [selectedDoorId, setSelectedDoorId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const [doorStatuses, setDoorStatuses] = useState({
+    track1: 'closed',
+    track2: 'closed',
+    track3: 'closed',
+    track4: 'closed'
+  });
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
 
   const doors = [
     {
@@ -31,14 +44,103 @@ const Door = () => {
     }
   ];
 
-  const handleDoorClick = (doorId) => {
-    setSelectedDoorId(doorId);
+  // Detect mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Fetch door statuses from API (hardcoded for now)
+  useEffect(() => {
+    // Simulating API call with hardcoded response
+    const fetchDoorStatuses = () => {
+      // This will be replaced with: axios.get('YOUR_API_ENDPOINT')
+      const apiResponse = {
+        "status": "success",
+        "data": {
+          "track1": "closed",
+          "track2": "open",
+          "track3": "closed",
+          "track4": "closed"
+        }
+      };
+
+      if (apiResponse.status === 'success') {
+        setDoorStatuses(apiResponse.data);
+      }
+    };
+
+    fetchDoorStatuses();
+  }, []);
+
+  const handleNextPage = () => {
+    if (currentPage < 1) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Touch handlers for swipe navigation
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe && currentPage < 1) {
+      handleNextPage();
+    }
+    if (isRightSwipe && currentPage > 0) {
+      handlePrevPage();
+    }
+  };
+
+  // Filter doors based on current page (mobile only)
+  const getDisplayedDoors = () => {
+    if (!isMobile) {
+      return doors;
+    }
+    const startIndex = currentPage * 2;
+    return doors.slice(startIndex, startIndex + 2);
+  };
+
+  const displayedDoors = getDisplayedDoors();
+
   return (
-    <div className="door-container">
+    <div 
+      className="door-container"
+      onTouchStart={isMobile ? onTouchStart : undefined}
+      onTouchMove={isMobile ? onTouchMove : undefined}
+      onTouchEnd={isMobile ? onTouchEnd : undefined}
+    >
       {/* Background */}
       <div className="background-image"></div>
+
+      {/* Mobile Title - Only visible on mobile */}
+      {isMobile && (
+        <h1 className="mobile-title">CHOOSE OUT OF THE FOUR TRACKS</h1>
+      )}
 
       {/* Clock - Top Right */}
       <img 
@@ -70,14 +172,14 @@ const Door = () => {
 
       {/* Doors Container */}
       <div className="doors-wrapper">
-        {doors.map((door) => {
-          const isLocked = selectedDoorId !== null && selectedDoorId !== door.id;
+        {displayedDoors.map((door) => {
+          const trackKey = `track${door.id}`;
+          const isLocked = doorStatuses[trackKey] === 'closed';
           
           return (
             <div 
               key={door.id} 
               className={`door-item door-${door.id} ${isLocked ? 'locked' : ''}`}
-              onClick={!isLocked ? () => handleDoorClick(door.id) : undefined}
             >
               {/* Door Image */}
               <img 
@@ -93,7 +195,7 @@ const Door = () => {
                 className="hanger-image"
               />
 
-              {/* Lock - Show on other doors when one is selected */}
+              {/* Lock - Show if door status is "closed" */}
               {isLocked && (
                 <img 
                   src="/assets/images/lock.png" 
@@ -105,6 +207,30 @@ const Door = () => {
           );
         })}
       </div>
+
+      {/* Mobile Pagination Controls */}
+      {isMobile && (
+        <div className="mobile-pagination">
+          <button 
+            className="pagination-btn prev"
+            onClick={handlePrevPage}
+            disabled={currentPage === 0}
+          >
+            ←
+          </button>
+          <div className="pagination-dots">
+            <span className={`dot ${currentPage === 0 ? 'active' : ''}`}></span>
+            <span className={`dot ${currentPage === 1 ? 'active' : ''}`}></span>
+          </div>
+          <button 
+            className="pagination-btn next"
+            onClick={handleNextPage}
+            disabled={currentPage === 1}
+          >
+            →
+          </button>
+        </div>
+      )}
     </div>
   );
 };
