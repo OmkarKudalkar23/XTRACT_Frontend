@@ -59,24 +59,24 @@ function Login() {
             
           <div className="w-[70%] text-left text-[#f5deb3] font-serif tracking-wide mt-2 sm:mt-3 md:mt-4">
             <form onSubmit={(e) => { e.preventDefault(); navigate('/welcome'); }}>
-                <p className="text-s sm:text-xl md:text-2xl mb-1 sm:mb-2 md:mb-3">TEAM NAME:</p>
+                <p className="text-xs sm:text-xl md:text-2xl mb-0.5 sm:mb-2 md:mb-3">TEAM NAME:</p>
           <input
             type="text" id="name" name="name"
-            className="border border-[#f5deb3] bg-transparent text-[#f5deb3] px-2 py-0.1 rounded-md w-30 md:w-60 outline-none"
+            className="border border-[#f5deb3] bg-transparent text-[#f5deb3] text-xs sm:text-base px-2 py-0.5 rounded-md w-2/3 sm:w-30 md:w-60 outline-none"
           />
             <br/>
-          <p className="text-s sm:text-xl md:text-2xl mt-1 sm:mt-2 md:mt-3 mb-1 sm:mb-2 md:mb-3 ">LOGIN:</p>
+          <p className="text-xs sm:text-xl md:text-2xl mt-0.5 sm:mt-2 md:mt-3 mb-0.5 sm:mb-2 md:mb-3">LOGIN:</p>
           <div>
             <input
               type={showPassword ? "text" : "password"}
               id="login"
               name="login"
-              className="login border border-[#f5deb3] bg-transparent text-[#f5deb3] px-2 rounded-md w-30 md:w-60 outline-none"
+              className="login border border-[#f5deb3] bg-transparent text-[#f5deb3] text-xs sm:text-base px-2 py-0.5 rounded-md w-2/3 sm:w-30 md:w-60 outline-none"
               />
             <button
                type="button"
                onClick={() => setShowPassword(!showPassword)}
-              className="absolute left-[46%] top-[60%] 
+              className="absolute left-[50%] top-[58%] 
               sm:left-[60%] 
               sm:top-[61%] 
               md:left-[50%] md:top-[58%] transform -translate-y-1/2 text-[#f1c27d]"
@@ -87,7 +87,7 @@ function Login() {
             </div>
             <button
               type="submit"
-              className="mt-4 sm:mt-5 md:mt-6 bg-[#8b4513] text-[#f5deb3] px-6 py-2 rounded-md hover:bg-[#a0522d] transition-colors font-semibold border border-[#f5deb3]"
+              className="mt-3 sm:mt-5 md:mt-6 bg-[#8b4513] text-[#f5deb3] text-xs sm:text-base px-4 py-1.5 sm:px-6 sm:py-2 rounded-md hover:bg-[#a0522d] transition-colors font-semibold border border-[#f5deb3]"
             >
               ENTER
             </button>
