@@ -1,1 +1,7 @@
 @import "tailwindcss";
+*{
+    overflow: hidden;
+}
+body {
+  font-family: 'Inknut Antique', serif;
+}

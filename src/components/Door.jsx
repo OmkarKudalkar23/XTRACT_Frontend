@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Door.css';
 // import axios from 'axios'; // Will be used for actual API calls
 
 const Door = () => {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
@@ -127,6 +129,15 @@ const Door = () => {
 
   const displayedDoors = getDisplayedDoors();
 
+  // Handle door click
+  const handleDoorClick = (doorId, isLocked) => {
+    if (isLocked) {
+      alert('This track is locked! Complete the previous tracks first.');
+      return;
+    }
+    navigate(`/track/${doorId}`);
+  };
+
   return (
     <div 
       className="door-container"
@@ -180,6 +191,8 @@ const Door = () => {
             <div 
               key={door.id} 
               className={`door-item door-${door.id} ${isLocked ? 'locked' : ''}`}
+              onClick={() => handleDoorClick(door.id, isLocked)}
+              style={{ cursor: isLocked ? 'not-allowed' : 'pointer' }}
             >
               {/* Door Image */}
               <img 
