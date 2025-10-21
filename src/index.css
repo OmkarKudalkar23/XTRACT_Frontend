@@ -1,7 +1,19 @@
 @import "tailwindcss";
-*{
-    overflow: hidden;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body {
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
   font-family: 'Inknut Antique', serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
 }

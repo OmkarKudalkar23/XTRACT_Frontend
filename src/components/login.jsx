@@ -21,11 +21,13 @@ function Login() {
   };
   return (
     <>
-    <div className="container">
+    <div className="min-h-screen w-full overflow-hidden">
       <div
-        className="background relative w-screen h-screen overflow-hidden bg-cover bg-center"
+        className="background relative min-h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${images.bg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
         <img src={images.frame1} alt="frame1" className="absolute top-[85%] left-[10%] md:top-[74%] md:left-[5%]  w-[90px] sm:w-[140px] md:w-[160px]" />
