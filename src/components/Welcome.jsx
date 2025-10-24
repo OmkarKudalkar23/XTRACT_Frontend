@@ -12,7 +12,7 @@ function Welcome(){
                     <img src='assets\images\modern-wood-floor-transparent-background-cutout-png 2.jpg' className='w-[100vw] h-[28vh] bottom-0 absolute'></img>
                 </div>
                 <div>
-                    <img src='assets\images\Stairs-PNG-Picture 1-min.png' className='w-[45vw] h-[87vh] top-[-4%] absolute right-[-5%] z-40'></img>
+                    <img src='assets\images\Stairs-PNG-Picture 1-min.png' className='w-[45vw] h-[87vh] top-[-4%] absolute right-[-5%] z-30'></img>
                 </div>
                 <div>
                     <img src='assets\images\Polygon 1-min.png' className='w-[45vw] h-[70vh] top-[15%] absolute right-[-4.5%]'></img>
@@ -35,7 +35,7 @@ function Welcome(){
                 <div>
                     <img id="photo5" src='assets\images\photo5.png' className='absolute h-[20vh] lg:w-[7vw] md:w-[14vw] w-[18vw] left-[65%] top-[8%] z-30 '></img>
                 </div>
-                <div className='bg-gradient-to-r from-[rgba(197,180,180,0.8)] to-[rgba(98,83,83,0.8)] absolute w-[90vw] lg:max-w-none min-h-[10vw] md:w-[70vw] sm:w-[75vw] pl-5 pb-5 pr-1 lg:w-[50vw] sm:max-w-[400px] pt-8 lg:pt-[2vw] md:min-w-[600px] sm:min-w-[550px] max-w-[400px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold rounded-lg border-[0.2rem] border-black z-50'>
+                <div className='bg-gradient-to-r from-[rgba(197,180,180,0.8)] to-[rgba(98,83,83,0.8)] absolute w-[90vw] lg:max-w-none min-h-[10vw] md:w-[70vw] sm:w-[75vw] pl-5 pb-5 pr-1 lg:w-[50vw] sm:max-w-[400px] pt-8 lg:pt-[2vw] md:min-w-[600px] sm:min-w-[550px] max-w-[400px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold rounded-lg border-[0.2rem] border-black z-40'>
                     <img 
                         src='assets\images\crossbutton.png' 
                         className=' lg:w-[4vw] md:w-[6vw] w-[8vw] sm:w-[6vw] absolute right-1 top-2 cursor-pointer'
